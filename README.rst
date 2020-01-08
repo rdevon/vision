@@ -1,3 +1,18 @@
+High-level asks to make this work for VDIM
+===========================================
+
+* First step: make it work without triggering warnings. Currently there are warnings for pts_units for "pts" vs "sec". This needs to be addressed. Since we aren't using audio currently, perhaps we can just use "pts", but the warning needs to go away, and it needs to be verified that the videos coming out are correct (e.g., N frames at correct start / end points).
+
+* Code is generally a mess and hard to debug. Comments and better documentation needs to be added to understand what the different variables are doing.
+
+* The following functionality needs to be **verified** to reliably work with VideoClips (unit tests would be good):
+  
+  * The user needs to be able to simply specify whether to sample clips of length num_clips or length num_milliseconds or full video (3 options).
+  
+  * Dataset information needs to be more transparent. For instance, loading the data for the first time (for instance when computing clips) could be accompanied with information about the fps (consistent or consistent with exceptions or all different), video sizes (consistent or consistent with exceptions or all different), loading issues / errors with certain videos. Maybe mean and covariance of pixels and outlier pixel detection (I've done this with fMRI data and it can be useful).
+  
+* In addition, there are a bunch of TODO warnings in io/video.py. What are these doing and are they important? Does moving to dali make the actual loading easier? If so, maybe consider just going to dali for loading.
+
 torchvision
 ===========
 
